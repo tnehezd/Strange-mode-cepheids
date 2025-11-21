@@ -120,6 +120,6 @@ In case you use these scripts, please cite the associated paper:
 ```
 
 
-Additionally, you can cite the Zenodo DOI for this repository:
-
+Additionally, you can cite the Zenodo DOI for this repository:  
+[https://doi.org/10.5281/zenodo.1722995](https://doi.org/10.5281/zenodo.1722995)
 
