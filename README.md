@@ -1,7 +1,7 @@
 # Scripts for "Stranger Things: A Grid-based Survey of Strange Modes in Post-Main Sequence Models"
 
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1722995.svg)](https://doi.org/10.5281/zenodo.1722995)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1722995.svg)](https://zenodo.org/records/17229951)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 
