@@ -72,7 +72,7 @@ python initialize_convos_high_grid.py
 * copied executables from exec/
 * copied source/build directories from include/
 
-👉 See ``example/run_no_os_2.0MSUN_z0.0120/`` for a reference of how a correctly generated run directory should look.
+👉 See ``example/run_nad_convos_mid_8.0MSUN_z0.0075/`` for a reference of how a correctly generated run directory should look.
 
 
 4. Run the models
