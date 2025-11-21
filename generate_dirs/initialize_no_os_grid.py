@@ -3,10 +3,11 @@ import shutil
 import numpy as np
 
 def create_directories(base_dir="no_os"):
-    if not os.path.exists(base_dir):
-        os.makedirs(base_dir)
+    actual_dir = '../'+base_dir
+    if not os.path.exists(actual_dir):
+        os.makedirs(actual_dir)
 
-    mass_range = np.arange(2, 15.5, 0.5)
+    mass_range = np.arange(2.0, 15.5, 0.5)
     metallicity_range = np.arange(0.0015, 0.0205, 0.0005)
 
     files_to_copy = ["rn", "mk", "clean", "star", "re"]
@@ -17,7 +18,7 @@ def create_directories(base_dir="no_os"):
     for mass in mass_range:
         for metallicity in metallicity_range:
             dir_name = f"run_{base_dir}_{mass:.1f}MSUN_z{metallicity:.4f}"
-            dir_path = os.path.join(base_dir, dir_name)
+            dir_path = os.path.join(actual_dir, dir_name)
 
             if os.path.exists(dir_path):
                 if os.listdir(dir_path):
