@@ -9,7 +9,11 @@ This repository contains the Python scripts used to generate the models and data
 > - **MESA version 23.05.1**  
 > - **GYRE version 7.0**  
 >  
-> Other versions may lead to unexpected behavior or incompatibilities.
+> Other versions may lead to unexpected behavior or incompatibilities.  
+>  
+> ⚠️ **Disclaimer**  
+> It is assumed that the user is already familiar with MESA, has it properly installed, and knows how to run it. Installation instructions, tutorials, and general usage guides are **not** part of this repository.
+
 
 
 
