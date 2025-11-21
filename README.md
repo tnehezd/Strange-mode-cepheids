@@ -42,7 +42,18 @@ git clone https://github.com/username/Strange-mode-cepheids.git
 cd Strange-mode-cepheids
 ```
 
-2. Run the script:
+2. Run the scripts in one of two ways:
+
+** Option A — generate all grids at once (recommended): **
+
+```bash:
+python initialize_grid.py
+```
+
+This will run all generator scripts (``initialize_convos_low_grid.py``, ``initialize_convos_mid_grid.py``, ``initialize_convos_high_grid.py``, ``initialize_no_os_grid.py``) and create the corresponding directories in the repository ``root``.
+
+
+** Option B — generate grids individually: **
 
 ```bash:
 cd generata_dirs
@@ -51,7 +62,7 @@ python initialize_convos_high_grid.py
 ... or the corresponding script (``initialize_convos_mid_grid.py``, ``initialize_convos_high_grid.py``) depending on the grid you want to generate.
 
 
-3. After successful execution, a set of run directories will be created under the chosen ``base_dir`` in the root directory (i.e., ``no_os``, ``nad_convos_low``, ``nad_convos_mid``, ``nad_convos_high``). Each run directory contains:
+3. After successful execution, a set of run directories will be created under the chosen ``base_dir`` in the ``root`` directory (i.e., ``no_os``, ``nad_convos_low``, ``nad_convos_mid``, ``nad_convos_high``). Each run directory contains:
 
 * ``inlist`` and ``inlist_project`` input files
 * copied executables from exec/
