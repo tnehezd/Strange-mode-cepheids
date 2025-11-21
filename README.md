@@ -1,6 +1,10 @@
 # Scripts for "Stranger Things: A Grid-based Survey of Strange Modes in Post-Main Sequence Models"
 
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1722995.svg)](https://doi.org/10.5281/zenodo.1722995)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+
 This repository contains the Python scripts used to generate the models and data presented in "Stranger Things: A Grid-based Survey of Strange Modes in Post-Main Sequence Models" (Tarczay-Nehéz et al., 2026). The scripts automate the creation of MESA input directories for a grid of stellar masses and metallicities, including overshoot prescriptions and inlist configurations.
 
 
@@ -121,5 +125,4 @@ In case you use these scripts, please cite the associated paper:
 
 
 Additionally, you can cite the Zenodo DOI for this repository:  
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1722995.svg)](https://doi.org/10.5281/zenodo.1722995)
-
+[https://doi.org/10.5281/zenodo.1722995](https://doi.org/10.5281/zenodo.1722995)
