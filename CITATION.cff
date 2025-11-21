@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+title: "Stranger Things: A Grid-based Survey of Strange Modes in Post-Main Sequence Models"
+message: "If you use these scripts, please cite the following work."
+authors:
+  - family-names: "Tarczay-Nehéz"
+    given-names: "Dóra"
+version: "1.0.0"
+doi: "10.5281/zenodo.1722995"
+date-released: 2025-11-21
+url: "https://github.com/username/Strange-mode-cepheids"
