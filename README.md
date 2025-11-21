@@ -19,9 +19,10 @@ This repository contains the Python scripts used to generate the models and data
 
 ## Contents
 
-* **generate_dirs** – this includes the grid generating pys.
+* **generate_dirs/** – this includes the grid generating pys.
 * **include/** – this direcotry contains ``MESA`` ``src/`` and ``make`` dirs for the current runs.
 * **exec/** - this directory contains the ``MESA`` executables (``clean``, ``rn``, ``star``, etc) for the script.
+* **example/** – sample run directory structure.
 
 
 ## Requirements
@@ -47,7 +48,17 @@ cd Strange-mode-cepheids
 cd generata_dirs
 python initialize_low_grid
 ```
-... or the script you need.
+... or the corresponding script (``initialize_convos_mid_grid.py``, ``initialize_convos_high_grid.py``) depending on the grid you want to generate.
+
+
+3. After successful execution, a set of run directories will be created under the chosen ``base_dir`` (i.e., ``no_os``, ``nad_convos_low``, ``nad_convos_mid``, ``nad_convos_high``). Each run directory contains:
+
+** ``inlist`` and ``inlist_project`` input files
+** copied executables from exec/
+** copied source/build directories from include/
+
+👉 See ``example/run_no_os_2.0MSUN_z0.0120/`` for a reference of how a correctly generated run directory should look.
+
 
 
 
