@@ -3,7 +3,11 @@ import shutil
 import numpy as np
 
 def create_directories(base_dir="nad_convos_high"):
-    actual_dir = '../'+base_dir
+    # Always place output directories in the repository root
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    repo_root = os.path.abspath(os.path.join(script_dir, ".."))
+    actual_dir = os.path.join(repo_root, base_dir)
+
     if not os.path.exists(actual_dir):
         os.makedirs(actual_dir)
 
@@ -23,7 +27,10 @@ def create_directories(base_dir="nad_convos_high"):
             if os.path.exists(dir_path):
                 if os.listdir(dir_path):
                     if overwrite_all is None:
-                        response = input(f"The directory {dir_path} already exists and is not empty. Overwrite files? (y/n/all/none): ")
+                        response = input(
+                            f"The directory {dir_path} already exists and is not empty. "
+                            "Overwrite files? (y/n/all/none): "
+                        )
                         if response.lower() == 'y':
                             overwrite_all = 'y_all'
                         elif response.lower() == 'n':
@@ -44,24 +51,25 @@ def create_directories(base_dir="nad_convos_high"):
                 os.makedirs(dir_path)
                 print(f"Created: {dir_path}")
 
-            # Copy executables from ../exec/
+            # Copy executables from repo_root/exec/
             for file_name in files_to_copy:
-                src_path = os.path.join("../exec", file_name)
+                src_path = os.path.join(repo_root, "exec", file_name)
                 dest_path = os.path.join(dir_path, file_name)
                 if os.path.exists(src_path):
                     if not os.path.exists(dest_path) or overwrite_all == 'y_all':
                         shutil.copy(src_path, dest_path)
                         print(f"Copied: {file_name} -> {dest_path}")
 
-            # Copy include directories from ../include/
+            # Copy include directories from repo_root/include/
             for dir_name in directories_to_copy:
-                src_path = os.path.join("../include", dir_name)
+                src_path = os.path.join(repo_root, "include", dir_name)
                 dest_path = os.path.join(dir_path, dir_name)
                 if os.path.exists(src_path):
                     if not os.path.exists(dest_path) or overwrite_all == 'y_all':
                         shutil.copytree(src_path, dest_path, dirs_exist_ok=True)
                         print(f"Directories copied: {dir_name} -> {dest_path}")
 
+            # Create inlist file
             inlist_content = """! This is the first inlist file that MESA reads when it starts.
 
 &star_job
@@ -90,13 +98,13 @@ def create_directories(base_dir="nad_convos_high"):
     extra_pgstar_inlist_name = 'inlist_pgstar'
 / ! end of pgstar namelist
 """
-
             inlist_path = os.path.join(dir_path, "inlist")
             if not os.path.exists(inlist_path) or overwrite_all == 'y_all':
                 with open(inlist_path, "w") as f:
                     f.write(inlist_content)
                 print(f"Created: {inlist_path}")
 
+            # Create inlist_project file
             inlist_project_content = f"""&star_job
     pgstar_flag = .false.
     pause_before_terminate = .false.
@@ -164,8 +172,6 @@ def create_directories(base_dir="nad_convos_high"):
    predictive_bdy_loc(2) = 'any'
    make_gradr_sticky_in_solver_iters = .true.
 
-! for core He-burning, to prevent splitting of the core convection zone and/or core breathing pulses
-
    predictive_superad_thresh(1) = 0.01
    predictive_avoid_reversal(1) = 'he4'
 
@@ -181,7 +187,6 @@ def create_directories(base_dir="nad_convos_high"):
   history_interval = 1
 / ! end of controls namelist
 """
-
             inlist_project_path = os.path.join(dir_path, "inlist_project")
             if not os.path.exists(inlist_project_path) or overwrite_all == 'y_all':
                 with open(inlist_project_path, "w") as f:
