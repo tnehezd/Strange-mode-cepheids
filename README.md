@@ -53,9 +53,9 @@ python initialize_convos_high_grid.py
 
 3. After successful execution, a set of run directories will be created under the chosen ``base_dir`` in the root directory (i.e., ``no_os``, ``nad_convos_low``, ``nad_convos_mid``, ``nad_convos_high``). Each run directory contains:
 
-** ``inlist`` and ``inlist_project`` input files
-** copied executables from exec/
-** copied source/build directories from include/
+* ``inlist`` and ``inlist_project`` input files
+* copied executables from exec/
+* copied source/build directories from include/
 
 👉 See ``example/run_no_os_2.0MSUN_z0.0120/`` for a reference of how a correctly generated run directory should look.
 
