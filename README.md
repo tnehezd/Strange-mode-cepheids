@@ -16,7 +16,8 @@ This repository contains the Python scripts used to generate the models and data
 ## Contents
 
 * **generate_dirs** – this includes the grid generating pys.
-* **include/** – this direcotry contains surce files for the current runs.
+* **include/** – this direcotry contains ``MESA`` ``src/`` and ``make`` dirs for the current runs.
+* **exec/** - this directory contains the ``MESA`` executables (``clean``, ``rn``, ``star``, etc) for the script.
 
 
 ## Requirements
