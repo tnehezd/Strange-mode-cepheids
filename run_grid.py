@@ -1,41 +1,45 @@
-import os
-import subprocess
 import argparse
+import subprocess
+import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-def run_simulation(run_dir):
-    """Run clean, mk, rn inside a given directory."""
+def run_simulation(base_dir, cores):
+    """Run simulations in a given base_dir with specified cores."""
     try:
-        for cmd in ["./clean", "./mk", "./rn"]:
-            subprocess.run(cmd, cwd=run_dir, check=True)
-        print(f"✅ Finished simulation in {run_dir}")
+        subprocess.run(
+            [sys.executable, "run_grid_helper.py", "--base_dir", base_dir, "--cores", str(cores)],
+            check=True
+        )
+        print(f"✅ Finished grid for {base_dir}")
     except subprocess.CalledProcessError as e:
-        print(f"❌ Error in {run_dir}: {e}")
+        print(f"❌ Error running grid for {base_dir}: {e}")
 
-def run_all(base_dir, max_workers=4):
-    """Run simulations in all run_* directories under base_dir using max_workers cores."""
-    run_dirs = [
-        os.path.join(base_dir, d)
-        for d in os.listdir(base_dir)
-        if d.startswith("run_") and os.path.isdir(os.path.join(base_dir, d))
-    ]
+def main():
+    parser = argparse.ArgumentParser(description="Run MESA grids in parallel.")
+    parser.add_argument(
+        "--base_dir",
+        nargs="+",
+        default=["no_os", "nad_convos_low", "nad_convos_mid", "nad_convos_high"],
+        help="Which base_dir(s) to run. Default: all four."
+    )
+    parser.add_argument(
+        "--cores",
+        type=int,
+        default=4,
+        help="Number of cores to use for each grid (default: 4)."
+    )
+    args = parser.parse_args()
 
-    print(f"Found {len(run_dirs)} run directories under {base_dir}.")
-    print(f"Running with {max_workers} parallel workers...")
+    print(f"Running grids: {args.base_dir} with {args.cores} cores each.")
 
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        futures = {executor.submit(run_simulation, rd): rd for rd in run_dirs}
+    with ThreadPoolExecutor(max_workers=len(args.base_dir)) as executor:
+        futures = {executor.submit(run_simulation, bd, args.cores): bd for bd in args.base_dir}
         for future in as_completed(futures):
-            rd = futures[future]
+            bd = futures[future]
             try:
                 future.result()
             except Exception as e:
-                print(f"❌ Simulation failed in {rd}: {e}")
+                print(f"❌ Grid failed for {bd}: {e}")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Run MESA simulations in parallel.")
-    parser.add_argument("--base_dir", required=True, help="Base directory containing run_* subdirectories")
-    parser.add_argument("--cores", type=int, default=4, help="Number of parallel workers (default: 4)")
-    args = parser.parse_args()
-
-    run_all(args.base_dir, args.cores)
+    main()

@@ -71,6 +71,35 @@ python initialize_convos_high_grid.py
 👉 See ``example/run_no_os_2.0MSUN_z0.0120/`` for a reference of how a correctly generated run directory should look.
 
 
+4. Run the models
+
+You can either run all the generated models for all the four directories, or set it by hand.
+
+**Option A — Run all the models:**
+
+```bash
+python run_grid.py
+```
+
+This will automatically run all the models parallel on 4 CPU cores.
+
+**Option B — Run only one model set:**
+
+To run only specific grids, use ``--base_dir``:
+
+```bash:
+python run_grid.py --base_dir no_os nad_convos_mid
+```
+
+
+**⚠️ Note on CPU usage:**
+
+You can control the number of parallel runs with --cores. For example:
+```bash:
+python run_grid.py --cores 8
+```
+
+The driver will keep your cores busy by starting new runs as soon as others finish. Keep in mind that ``MESA`` itself often uses multiple threads internally (commonly 2 by default via OpenMP). Since threads share physical CPU cores, oversubscribing can slow everything down. As a rule of thumb, set ``--cores`` to at most half of your available physical cores unless you explicitly configure ``MESA`` to use only one thread per run (``export OMP_NUM_THREADS=1``).
 
 
 
