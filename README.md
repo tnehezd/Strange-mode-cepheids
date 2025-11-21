@@ -92,14 +92,14 @@ python run_grid.py --base_dir no_os nad_convos_mid
 ```
 
 
-**⚠️ Note on CPU usage:**
+> **⚠️ Important note on CPU usage:**
+> 
+> You can control the number of parallel runs with --cores. For example:
+> ```bash:
+> python run_grid.py --cores 8
+> ```
 
-You can control the number of parallel runs with --cores. For example:
-```bash:
-python run_grid.py --cores 8
-```
-
-The driver will keep your cores busy by starting new runs as soon as others finish. Keep in mind that ``MESA`` itself often uses multiple threads internally (commonly 2 by default via OpenMP). Since threads share physical CPU cores, oversubscribing can slow everything down. As a rule of thumb, set ``--cores`` to at most half of your available physical cores unless you explicitly configure ``MESA`` to use only one thread per run (``export OMP_NUM_THREADS=1``).
+> The driver will keep your cores busy by starting new runs as soon as others finish. Keep in mind that ``MESA`` itself often uses multiple threads internally (commonly 2 by default via OpenMP). Since threads share physical CPU cores, oversubscribing can slow everything down. As a rule of thumb, set ``--cores`` to at most half of your available physical cores unless you explicitly configure ``MESA`` to use only one thread per run (``export OMP_NUM_THREADS=1``).
 
 
 
