@@ -44,7 +44,7 @@ cd Strange-mode-cepheids
 
 2. Run the scripts in one of two ways:
 
-** Option A — generate all grids at once (recommended): **
+**Option A — generate all grids at once (recommended):**
 
 ```bash:
 python initialize_grid.py
@@ -53,7 +53,7 @@ python initialize_grid.py
 This will run all generator scripts (``initialize_convos_low_grid.py``, ``initialize_convos_mid_grid.py``, ``initialize_convos_high_grid.py``, ``initialize_no_os_grid.py``) and create the corresponding directories in the repository ``root``.
 
 
-** Option B — generate grids individually: **
+**Option B — generate grids individually:**
 
 ```bash:
 cd generata_dirs
