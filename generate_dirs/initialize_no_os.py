@@ -2,21 +2,21 @@ import os
 import shutil
 import numpy as np
 
-def create_directories(base_dir="nad_convos_low"):
+def create_directories(base_dir="no_os"):
     if not os.path.exists(base_dir):
         os.makedirs(base_dir)
 
     mass_range = np.arange(2, 15.5, 0.5)
     metallicity_range = np.arange(0.0015, 0.0205, 0.0005)
 
-    files_to_copy = ["rn", "mk", "clean", "re"]
+    files_to_copy = ["rn", "mk", "clean", "star", "re"]
     directories_to_copy = ["src", "make"]
 
     overwrite_all = None
 
     for mass in mass_range:
         for metallicity in metallicity_range:
-            dir_name = f"{base_dir}_{mass:.1f}MSUN_z{metallicity:.4f}"
+            dir_name = f"run_{base_dir}_{mass:.1f}MSUN_z{metallicity:.4f}"
             dir_path = os.path.join(base_dir, dir_name)
 
             if os.path.exists(dir_path):
@@ -116,57 +116,16 @@ def create_directories(base_dir="nad_convos_low"):
     kap_lowT_prefix = 'lowT_fa05_a09p'
     kap_CO_prefix = 'a09_co'
     use_Type2_opacities = .true.
-
+    
 / ! end of kap namelist
 
 &controls
   initial_mass = {mass:.1f}
   mixing_length_alpha = 2.22
   stop_at_phase_TP_AGB = .true.
-  max_model_number = 3000
+  max_model_number = 6000
   initial_Y = 0.256d0
   initial_Z = {metallicity:.4f}
-
-   energy_eqn_option = 'dedt'
-   use_gold2_tolerances = .true.
-
-   mixing_length_alpha = 1.8d0
-   MLT_option = 'TDC'
-
-   use_Ledoux_criterion = .true.
-   alpha_semiconvection = 0.1
-
-   overshoot_scheme(1) = 'exponential'
-   overshoot_zone_type(1) = 'burn_H'
-   overshoot_zone_loc(1) = 'core'
-   overshoot_bdy_loc(1) = 'top'
-   overshoot_f(1) = 0.012
-   overshoot_f0(1) = 0.002
-
-   overshoot_scheme(2) = 'exponential'
-   overshoot_zone_type(2) = 'nonburn'
-   overshoot_zone_loc(2) = 'shell'
-   overshoot_bdy_loc(2) = 'bottom'
-   overshoot_f(2) = 0.022
-   overshoot_f0(2) = 0.002
-
-   predictive_mix(1) = .true.
-   predictive_zone_type(1) = 'any'
-   predictive_zone_loc(1) = 'core'
-   predictive_bdy_loc(1) = 'any'
-
-   predictive_mix(2) = .true.
-   predictive_zone_type(2) = 'any'
-   predictive_zone_loc(2) = 'surf'
-   predictive_bdy_loc(2) = 'any'
-   make_gradr_sticky_in_solver_iters = .true.
-
-! for core He-burning, to prevent splitting of the core convection zone and/or core breathing pulses
-
-   predictive_superad_thresh(1) = 0.01
-   predictive_avoid_reversal(1) = 'he4'
-
-   delta_HR_limit = 0.002
 
   log_directory = 'LOGS'
   calculate_Brunt_N2 = .true.

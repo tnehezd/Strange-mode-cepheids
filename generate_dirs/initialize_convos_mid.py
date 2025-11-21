@@ -2,11 +2,11 @@ import os
 import shutil
 import numpy as np
 
-def create_directories(base_dir="nad_convos_low"):
+def create_directories(base_dir="nad_convos_mid"):
     if not os.path.exists(base_dir):
         os.makedirs(base_dir)
 
-    mass_range = np.arange(2, 15.5, 0.5)
+    mass_range = np.arange(11.0, 12.0, 0.5)
     metallicity_range = np.arange(0.0015, 0.0205, 0.0005)
 
     files_to_copy = ["rn", "mk", "clean", "re"]
@@ -100,7 +100,7 @@ def create_directories(base_dir="nad_convos_low"):
     pgstar_flag = .false.
     pause_before_terminate = .false.
     create_pre_main_sequence_model = .true.
-    change_initial_net = .true.      
+    change_initial_net = .true.
     new_net_name = 'pp_cno_extras_o18_ne22.net'
     show_net_species_info = .false.
     save_model_when_terminate = .true.
@@ -126,7 +126,7 @@ def create_directories(base_dir="nad_convos_low"):
   max_model_number = 3000
   initial_Y = 0.256d0
   initial_Z = {metallicity:.4f}
-
+  
    energy_eqn_option = 'dedt'
    use_gold2_tolerances = .true.
 
@@ -140,15 +140,15 @@ def create_directories(base_dir="nad_convos_low"):
    overshoot_zone_type(1) = 'burn_H'
    overshoot_zone_loc(1) = 'core'
    overshoot_bdy_loc(1) = 'top'
-   overshoot_f(1) = 0.012
-   overshoot_f0(1) = 0.002
+   overshoot_f(1) = 0.02
+   overshoot_f0(1) = 0.004
 
    overshoot_scheme(2) = 'exponential'
    overshoot_zone_type(2) = 'nonburn'
    overshoot_zone_loc(2) = 'shell'
    overshoot_bdy_loc(2) = 'bottom'
-   overshoot_f(2) = 0.022
-   overshoot_f0(2) = 0.002
+   overshoot_f(2) = 0.03
+   overshoot_f0(2) = 0.004
 
    predictive_mix(1) = .true.
    predictive_zone_type(1) = 'any'
