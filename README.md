@@ -19,6 +19,14 @@ This repository contains the Python scripts used to generate the models and data
 * **include/** – this direcotry contains surce files for the current runs.
 
 
+## Requirements
+
+- Python 3.8 or newer
+- NumPy ≥ 1.18
+- MESA version 23.05.1
+- GYRE version 7.0
+
+
 ## Usage
 
 1. To recreate your grid of *MESA* runs, clone the repository:
