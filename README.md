@@ -46,12 +46,12 @@ cd Strange-mode-cepheids
 
 ```bash:
 cd generata_dirs
-python initialize_low_grid
+python initialize_convos_high_grid.py
 ```
 ... or the corresponding script (``initialize_convos_mid_grid.py``, ``initialize_convos_high_grid.py``) depending on the grid you want to generate.
 
 
-3. After successful execution, a set of run directories will be created under the chosen ``base_dir`` (i.e., ``no_os``, ``nad_convos_low``, ``nad_convos_mid``, ``nad_convos_high``). Each run directory contains:
+3. After successful execution, a set of run directories will be created under the chosen ``base_dir`` in the root directory (i.e., ``no_os``, ``nad_convos_low``, ``nad_convos_mid``, ``nad_convos_high``). Each run directory contains:
 
 ** ``inlist`` and ``inlist_project`` input files
 ** copied executables from exec/
